@@ -1,0 +1,51 @@
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+  
+        <div class="col-xl-10 col-lg-12 col-md-9">
+  
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image border-line"> <img class="img" src="../../../assets/images/logo.png" ></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Email</h1>
+                                </div>
+                                <form [formGroup]="form" (ngSubmit)="sendMail()">
+                                    <div class="form-group">
+                                        <input type="email" 
+                                        formControlName="email" 
+                                        class="form-control" 
+                                        placeholder="Taper Email"  
+                                        [ngClass]="{ 'is-invalid': submitted && fval.email.errors }">
+                                          </div>
+                                          <button style="float:right" class="btn btn-success" [disabled]="loading" nbButton status="primary">
+                                            <span
+                                              *ngIf="loading"
+                                              class="spinner-border spinner-border-sm mr-1"
+                                            ></span>
+                                       Envoyer
+                                    </button>
+                                    <hr>
+  
+                                    
+                                </form>
+                                <hr>
+                                
+                                <!--latest changes-->
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+  
+    </div>
+  
+  </div>

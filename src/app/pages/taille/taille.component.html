@@ -1,0 +1,45 @@
+
+ 
+  <a style="font-weight:bold ;font-size: medium ">Client</a>
+<br>
+
+<br>
+
+<mat-form-field>
+  <input matInput placeholder="Rechercher"class="search" (keyup)="applyFilter($event.target.value)">
+</mat-form-field>
+
+
+<button (click)="openDialog('Add',{})" class="btn btn-success" style="float: right; width:200px"><i class="far fa-plus-square"></i>  Ajouter </button><br>
+
+
+
+  <table mat-table [dataSource]="dataSource" (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID. </th>
+      <td mat-cell *matCellDef="let tailleData"> {{tailleData.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let tailleData"> {{tailleData.name}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let tailleData" class="action-link"> 
+        <button (click)="openDialog('Update',tailleData)"><i class="far fa-edit"></i></button> | 
+        <button (click)="openDialog('Delete',tailleData)"><i class="far fa-delete-right"></i></button>  
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

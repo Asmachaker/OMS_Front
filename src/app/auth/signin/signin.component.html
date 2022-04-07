@@ -1,0 +1,61 @@
+
+
+
+ <div class="container">
+
+   
+    <div class="row justify-content-center">
+  
+      <div class="col-xl-10 col-lg-12 col-md-9">
+  
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+          
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image border-line"> <img class="img" src="../../../assets/images/logo.png" ></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4"><strong>Bienvenue sur OMS</strong></h1>
+                  </div>
+                  <hr>
+                  <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="form-group">
+                      <input type="text" 
+                       formControlName="username" 
+                       class="form-control" 
+                       placeholder="Username"  
+                       [ngClass]="{ 'is-invalid': submitted && fval.username.errors }"
+                         >
+                    </div>
+                    <div class="form-group">
+                      <input type="password"  
+                             formControlName="password"  
+                             class="form-control"
+                             placeholder="Mot de passe"  
+                             [ngClass]="{ 'is-invalid': submitted && fval.password.errors }">
+                    </div>
+                    
+                    <button style="margin-left: 150px;
+                    height: 44px;
+                    width: 146px" class="btn btn-success" [disabled]="loading" nbButton status="primary">
+                      <span
+                        *ngIf="loading"
+                        class="spinner-border spinner-border-sm mr-1"
+                      ></span>
+                      S'authentifier
+                    </button>
+                    <br>
+                 
+                     <a style="text-align: center;" class=float-center routerLink="../email"> mot de passe oublié? </a>
+
+                    </form></div></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+</div>
+ 

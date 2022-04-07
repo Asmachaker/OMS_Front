@@ -1,0 +1,152 @@
+
+
+
+<div class="card">
+  <div class="card-header">
+    <h3>Ajout Client</h3>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
+
+      <div class="form-group">
+        <label for="Nom">Nom</label>
+        <input
+          type="text"
+          formControlName="Nom"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && fval.Nom.errors }"
+          placeholder="Entrer Nom ici"
+        />
+        <div class="form-group" *ngIf="(fval.Nom.errors && submitted)">
+          <div class="text-danger">
+            <small  *ngIf="fval.Nom.errors.required">Nom est obligatoire</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Matricule"> Matricule fiscal </label>
+        <input
+          type="Number"
+          formControlName="Matricule"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && fval.Matricule.errors }"
+          placeholder="Entrer Matricule fisacal ici"
+          maxLength="9"
+        />
+        <div class="form-group" *ngIf="(fval.Matricule.errors && submitted)">
+          <div class="text-danger">
+            <small  *ngIf="fval.Matricule.errors.required">Matricule fiscal est obligatoire</small>
+          </div>
+        </div>
+       
+        
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="Email">Email </label>
+        <input
+          type="email"
+          formControlName="Email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && fval.Email.errors }"
+          placeholder="Entrer Email ici"
+        />
+        <div class="form-group" *ngIf="(fval.Email.errors  && submitted)">
+          <div class="text-danger">
+            <small  *ngIf="fval.Email.errors.required">Email est obligatoire</small>
+          </div>
+        </div>
+      
+      </div>
+
+      
+
+     
+      <div class="form-group">
+        <label for="Num_telephone">Numéro téléphone</label>
+        <input
+          type="number"
+          formControlName="Num_telephone"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && fval.Num_telephone.errors }"
+          placeholder="Entrer Numéro téléphone ici"
+          maxlength="8"
+        />
+        <div class="form-group" *ngIf="(fval.Num_telephone.errors  && submitted) ">
+          <div class="text-danger">
+            <small  *ngIf="fval.Num_telephone.errors.required">Numéro téléphone est obligatoire</small>
+          </div>
+        </div>
+</div>
+
+<div class="form-group">
+  <label for="Statut" >Statut</label>
+<ui-switch  type="boolean" [(ngModel)]="Switched" style="margin-left: 20px;" [ngModelOptions]="{standalone: true}" >
+</ui-switch>
+</div>
+      <div class="form-group">
+        <label for="Gouvernorat">Gouvernorat</label>
+
+      <select type="text" class="gouvernorat" formControlName="Gouvernorat" [(ngModel)]="GNum" (ngModelChange)="toNumber()">
+        <option  *ngFor="let c of Gouvernorat" [ngValue]="c.name">{{c.name}}</option>
+      </select>
+      <div class="form-group" *ngIf="(fval.Gouvernorat.errors &&  submitted )">
+        <div class="text-danger">
+          <small  *ngIf="fval.Gouvernorat.errors.required">Choix du gouvernorat est obligatoire</small>
+        </div>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <label for="Adresse">Adresse</label>
+        <input  id="Adresse"
+                type="text"
+                formControlName="Adresse"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && fval.Adresse.errors }"
+                placeholder="Tapez ici Adresse"
+                />
+
+        <div class="invalid-feedback" *ngIf="(fval.Adresse.errors &&  submitted )">
+          <div *ngIf="fval.Adresse.errors.required"> Adresse est obligatoire</div>
+       </div>
+      </div>
+
+      <div class="form-group" >
+        <label for="Delai">Délai de paiement</label>
+
+      <select formControlName="Delai" class="gouvernorat"  [(ngModel)]="DNum"  (ngModelChange)="tonumber()">
+       
+        <option *ngFor="let c of DelaiPaiement" [ngValue]="c">{{c}}</option>
+      </select>
+      <br>
+     <div class="form-group" *ngIf="(fval.Delai.errors && submitted) ">
+      <div class="text-danger">
+        <small *ngIf="fval.Delai.errors.required">Choix du Delai est obligatoire</small>
+      </div>
+    </div>
+
+
+    
+  </div>
+      <div class="form-group">
+          <br>
+        <button routerLink="../liste" type="button" class="btn btn-secondary">Annuler</button>
+        <button style="float:right" class="btn btn-success" [disabled]="loading" nbButton status="primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Ajouter
+        </button>
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+

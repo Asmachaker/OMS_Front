@@ -1,0 +1,100 @@
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+  
+        <div class="col-xl-10 col-lg-12 col-md-9">
+  
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image border-line"><img class="img" src="../../../assets/images/logo.png" ></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Activation</h1>
+                                </div>
+                                <form [formGroup]="formGroup" class="user" (ngSubmit)="activate()">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input type="password" 
+                                            nbInput
+                                            formControlName="password" 
+                                            class="form-control" 
+                                            placeholder="Taper mot de passe"  
+                                            autofocus
+                                            [status]="password.touched  ? (password.invalid  ? 'danger' : 'success') : 'basic'"
+                                            required
+                                            [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+                                   
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" 
+                                        nbInput
+                                        formControlName="confirm" 
+                                        class="form-control" 
+                                        placeholder="Confirmer mot de passe"  
+                                        [ngClass]="{ 'is-invalid': submitted && fval.confirm.errors }"
+                                        [status]="confirm.touched
+                                         ? (confirm.invalid || password.value != confirm.value ? 'danger' : 'success'): 'basic'"
+                                         [attr.aria-invalid]="confirm.invalid && confirm.touched ? true : null">
+                                        <ng-container *ngIf="confirm.touched">
+                                            <p class="caption status-danger" *ngIf="confirm.invalid && confirm.errors?.required">
+                                              Confirmation du Mot de passe est obligatoire!
+                                            </p>
+                                            <p class="caption status-danger" *ngIf="password.value != confirm.value && !confirm.errors?.required">
+                                              Mot de passe ne correspond pas au mot de passe de confirmation.
+                                            </p>
+                                          </ng-container>
+                                    
+                                    </div>
+                                    <button [class.spinner]="loading"  type="submit" [disabled]="loading" nbButton status="primary" class="btn btn-success">
+                                      
+  
+                                        Activer
+                                    </button>
+                                    <hr>
+  
+                                    <div class="form-group" *ngIf="!(password.value === confirm.value) ">
+                                      <div class="alert alert-warning">
+                                       Confirmation du mot de passe est incorrecte
+                                      </div>
+                                  </div>
+                                  <div class="form-group" *ngIf="confirm.invalid && confirm.errors?.required && confirm.touched">
+                                    <div class="alert alert-warning">
+                                        Confirmation du Mot de passe est obligatoire!
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="password.invalid &&password.errors?.required && password.touched">
+                                    <div class="alert alert-warning">
+                                        Mot de passe obligatoire!
+                                    </div>
+                                </div>
+                                <div class="form-group"  *ngIf="password.errors?.minlength">
+                                    <div class="alert alert-warning">
+                                        Mot de passe doit contenir au moins 8 caractères 
+                                    </div>
+                                </div>
+  
+                                   
+                                </form>
+                                <hr>
+                                
+                                
+                                <!--latest changes-->
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+  
+    </div>
+  
+  </div>
+  

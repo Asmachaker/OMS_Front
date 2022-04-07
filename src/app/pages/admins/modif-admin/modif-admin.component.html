@@ -1,0 +1,119 @@
+<p>modif-admin works!</p>
+
+
+
+<div class="card">
+    <div class="card-header">
+      <h3>Ajout Administarteur</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
+  
+        <div class="form-group">
+          <label for="Nom">Nom</label>
+          <input
+            type="text"
+            formControlName="Nom"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fval.Nom.errors }"
+            placeholder="Entrer Nom ici"
+          />
+          <div class="form-group" *ngIf="(fval.Nom.errors && submitted)">
+            <div class="text-danger">
+              <small  *ngIf="fval.Nom.errors.required">Nom est obligatoire</small>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="Prenom">Prénom</label>
+          <input
+            type="text"
+            formControlName="Prenom"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fval.Prenom.errors }"
+            placeholder="Entrer Nom ici"
+          />
+          <div class="form-group" *ngIf="(fval.Prenom.errors && submitted)">
+            <div class="text-danger">
+              <small  *ngIf="fval.Prenom.errors.required">Prenom est obligatoire</small>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+        <div class="form-group">
+          <label for="Email">Email </label>
+          <input
+            type="email"
+            formControlName="Email"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fval.Email.errors }"
+            placeholder="Entrer Email ici"
+          />
+          <div class="form-group" *ngIf="(fval.Email.errors  && submitted)">
+            <div class="text-danger">
+              <small  *ngIf="fval.Email.errors.required">Email est obligatoire</small>
+            </div>
+          </div>
+        
+        </div>
+  
+        
+  
+       
+        <div class="form-group">
+          <label for="Num_telephone">Numéro téléphone</label>
+          <input
+            type="number"
+            formControlName="Num_telephone"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fval.Num_telephone.errors }"
+            placeholder="Entrer Numéro téléphone ici"
+            maxlength="8"
+          />
+          <div class="form-group" *ngIf="(fval.Num_telephone.errors  && submitted) ">
+            <div class="text-danger">
+              <small  *ngIf="fval.Num_telephone.errors.required">Numéro téléphone est obligatoire</small>
+            </div>
+          </div>
+  </div>
+  
+        <div class="form-group">
+          <label for="Adresse">Adresse</label>
+          <input  id="Adresse"
+                  type="text"
+                  formControlName="Adresse"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && fval.Adresse.errors }"
+                  placeholder="Tapez ici Adresse"
+                  />
+  
+          <div class="invalid-feedback" *ngIf="(fval.Adresse.errors &&  submitted )">
+            <div *ngIf="fval.Adresse.errors.required"> Adresse est obligatoire</div>
+         </div>
+        </div>
+  
+  
+      
+  
+        <div class="form-group">
+            <br>
+          <button routerLink="../liste" type="button" class="btn btn-secondary">Annuler</button>
+          <button style="float:right" class="btn btn-success" [disabled]="loading" nbButton status="primary">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Modifier
+          </button>
+  
+        </div>
+      </form>
+  
+  
+    </div>
+  </div>
+  
