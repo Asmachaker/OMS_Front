@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NbToastrService, NbComponentStatus, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { Client } from '../../../_models/Client';
-import { Delai } from '../../../_models/Delai';
 import { ClientService } from '../../../_services/client.service';
 
 @Component({

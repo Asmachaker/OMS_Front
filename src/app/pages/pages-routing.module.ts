@@ -12,7 +12,6 @@ import { BordereauComponent } from './bordereau/bordereau.component';
 import { FactureComponent } from './facture/facture.component';
 import { FactureAvoirComponent } from './facture-avoir/facture-avoir.component';
 import { AdminComponent } from './admins/_admin/admin.component';
-import { Role } from '../_models/role';
 import { TailleComponent } from './taille/taille.component';
 
 
@@ -54,8 +53,6 @@ children: [
   {
     path: 'zone',
     component: ZoneComponent
-   /*  loadChildren: () => import('./users/users.module')
-      .then(m => m.UsersModule), */
     
   },
   {

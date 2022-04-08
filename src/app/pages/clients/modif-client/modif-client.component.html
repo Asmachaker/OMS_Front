@@ -89,8 +89,8 @@
         <div class="form-group">
           <label for="Gouvernorat">Gouvernorat</label>
   
-        <select type="text" class="gouvernorat"style="margin-left: 10px;" formControlName="Gouvernorat" [(ngModel)]="GNum">
-          <option  *ngFor="let c of Delai" [ngValue]="c">{{c}}</option>
+        <select type="text" class="gouvernorat"style="margin-left: 10px;" formControlName="Gouvernorat">
+          <option  *ngFor="let c of Gouvernorat" [ngValue]="c.name">{{c.name}}</option>
         </select>
         <div class="form-group" *ngIf="(fval.Gouvernorat.errors &&  submitted )">
           <div class="text-danger">
@@ -118,7 +118,7 @@
           <label for="Delai">Délai de paiement</label>
   
           <select type="text" class="delai" style="margin-left: 10px;" formControlName="Delai" [(ngModel)]="DNum">
-            <option  *ngFor="let c of Delai" [ngValue]="c">{{c}}</option>
+            <option  *ngFor="let c of DelaiPaiement" [ngValue]="c">{{c}}</option>
           </select>
         <br>
        <div class="form-group" *ngIf="(fval.Delai.errors && submitted) ">

@@ -12,12 +12,6 @@ import { ClientService } from '../../../_services/client.service';
 })
 export class ModifClientComponent implements OnInit {
 
-
-
-  
-  
-  
-    
   
     constructor(private formBuilder: FormBuilder,
       private router: Router,
@@ -44,7 +38,7 @@ export class ModifClientComponent implements OnInit {
    
   
     ngOnInit(): void {
-      this.clientService.GetClient(localStorage.getItem('usernameAcc')).subscribe(res => {
+      this.clientService.GetClient(localStorage.getItem('id')).subscribe(res => {
 
         this.registerForm.controls['Nom'].setValue(res.worning);
         this.registerForm.controls['Matricule'].setValue(res.taxNumber);
@@ -54,12 +48,42 @@ export class ModifClientComponent implements OnInit {
         this.registerForm.controls['Gouvernorat'].setValue(res.gouvernorat);
         this.registerForm.controls['Delai'].setValue(res.deadlinePaiment);
         this.Switched=res.statut;
-        this.GNum=res.gouvernorat }
+        }
       )
      }
   
    
   
+     Gouvernorat:Array<Object> = [
+      {num:1 ,name: "Ariana"},
+      {num:2, name: "Béja"},
+      {num:3, name: "Ben Arous"},
+      {num:4, name: "Bizerte"},
+      {num:5, name: "Gabès"},
+      {num:6, name: "Gafsa"},
+      {num:7, name: "Jendouba"},
+      {num:8, name: "Kairouan"},
+      {num:9, name: "Kasserine"},
+      {num:10, name: "Kébili"},
+      {num:11, name: "Kef"},
+      {num:12, name: "Mahdia"},
+      {num:13, name: "Manouba"},
+      {num:14, name: "Médenine"},
+      {num:15, name: "Monastir"},
+      {num:16, name: "Nabeul"},
+      {num:17, name: "Sfax"},
+      {num:18, name: "Sidi Bouzid"},
+      {num:19, name: "Siliana"},
+      {num:20, name: "Sousse"},
+      {num:21, name: "Tataouine"},
+      {num:22, name: "Tozeur"},
+      {num:23, name: "Tunis"},
+      {num:24, name: "Zaghouan"},
+  
+  ];
+  
+  DelaiPaiement= [15,30,60,90]
+    
   
     
     get Nom(){

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Taille } from '../_models/Taille';
+import { Taille } from '../../_models/Taille';
 
 
 export interface TailleData {
@@ -9,18 +9,19 @@ export interface TailleData {
   action: string;
 }
 
+
 @Component({
   selector: 'ngx-dialog-box',
   templateUrl: './dialog-box.component.html',
   styleUrls: ['./dialog-box.component.scss']
 })
-export class DialogBoxComponent   {
+export class DialogBoxComponentTaille   {
 
   action:string;
   local_data:any;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogBoxComponent>,
+    public dialogRef: MatDialogRef<DialogBoxComponentTaille>,
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: TailleData) {
     console.log(data);

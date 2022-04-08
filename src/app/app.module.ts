@@ -27,12 +27,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ConfirmComponent } from './confirm/confirm.component';
+import { ConfirmComponent } from './_dialog/confirm/confirm.component';
 import { PagesComponent } from './pages/pages.component';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AuthComponent } from './auth/auth.component';
-import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { DialogBoxComponentTaille } from './_dialog/dialog-box-taille/dialog-box.component';
+import { DialogBoxComponentZone } from './_dialog/dialog-box-zone/dialog-box-zone.component';
 
 
 
@@ -66,7 +67,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
   ],
 
 
-  declarations: [AppComponent,ConfirmComponent,PagesComponent, AuthComponent, DialogBoxComponent],
+  declarations: [AppComponent,ConfirmComponent,PagesComponent, AuthComponent, DialogBoxComponentTaille,DialogBoxComponentZone],
   bootstrap: [AppComponent],
 })
 export class AppModule {

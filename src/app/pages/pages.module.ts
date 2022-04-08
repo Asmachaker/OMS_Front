@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { NbMenuModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
-import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PlanningComponent } from './planning/planning.component';
@@ -22,14 +21,12 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatNativeDateModule} from '@angular/material/core';
 import { UiSwitchModule } from 'ngx-toggle-switch';
 
-import { AjoutAdminComponent } from './admins/ajout-admin/ajout-admin.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModifAdminComponent } from './admins/modif-admin/modif-admin.component';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AdminComponent } from './admins/_admin/admin.component';
-import { Admin_Module } from './admins/admin.module';
 import { AdminsComponent } from './admins/admin.component';
+import { ZoneComponent } from './zone/zone.component';
 
 
 
@@ -66,6 +63,7 @@ import { AdminsComponent } from './admins/admin.component';
     BordereauComponent,
     FactureComponent,
     FactureAvoirComponent,
+    ZoneComponent
     
 
     

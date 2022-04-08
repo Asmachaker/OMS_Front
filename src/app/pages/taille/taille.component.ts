@@ -2,19 +2,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Taille,TailleSchema } from '../../_models/Taille';
 import {MatDialog} from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { ConfirmComponent } from '../../confirm/confirm.component';
+import { ConfirmComponent } from '../../_dialog/confirm/confirm.component';
 import { TailleService } from '../../_services/taille.service';
-import { DialogBoxComponent } from '../../dialog-box/dialog-box.component';
+import { DialogBoxComponentTaille } from '../../_dialog/dialog-box-taille/dialog-box.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
-export interface TailleData {
-  name: string;
-  id: number;
-  action: string;
-}
+
 @Component({
   selector: 'ngx-tailles',
   templateUrl: './taille.component.html',
@@ -57,7 +53,7 @@ getLista(): void {
     this.tailleData.action=action;
     this.tailleData.name=obj.name;
     this.tailleData.id=obj.id;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
+    const dialogRef = this.dialog.open(DialogBoxComponentTaille, {
      // width: '250px',
       //height: '150px',
       data:this.tailleData

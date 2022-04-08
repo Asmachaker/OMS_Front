@@ -1,7 +1,7 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ConfirmDialogData } from '../_models/dialog';
+import { ConfirmDialogData } from '../../_models/dialog';
 
 @Component({
   selector: 'ngx-confirm',
