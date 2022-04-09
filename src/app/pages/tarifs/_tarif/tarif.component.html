@@ -1,0 +1,71 @@
+<a style="font-weight:bold ;font-size: medium ">Tarif</a>
+<br>
+
+<br>
+
+<mat-form-field>
+  <input matInput placeholder="Rechercher" class="search" (keyup)="applyFilter($event.target.value)">
+</mat-form-field>
+
+
+<button routerLink="../ajoutTarif"  class="btn btn-success" style="float: right; width:200px"><i class="far fa-plus-square"></i>  Ajouter </button><br>
+
+
+<table mat-table matSort [dataSource]="dataSource" (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="ID." >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by Name">
+      ID.
+    </th>
+    <td mat-cell *matCellDef="let tarifData"> {{tarifData.id}}  </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Shift">
+    <th mat-header-cell *matHeaderCellDef >
+        Shift
+    </th>
+    <td mat-cell *matCellDef="let tarifData"> {{tarifData.shift.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="Zone" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header >
+     Zone
+    </th>
+    
+    <td mat-cell *matCellDef="let tarifData"> {{tarifData.zone.name}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Taille">
+    <th mat-header-cell *matHeaderCellDef >
+      Taille
+    </th>
+    <td mat-cell *matCellDef="let tarifData"> {{tarifData.taille.name}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="Prix">
+    <th mat-header-cell *matHeaderCellDef >
+      Prix
+    </th>
+    <td mat-cell *matCellDef="let tarifData"> {{tarifData.price}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let tarifData">
+    
+     <button [routerLink]="modifTarif" (click)="edit(tarifData)"><i class="far fa-edit"></i></button> | 
+     <button [routerLink]="modifTarif" (click)="edit(tarifData)"><i class="far fa-delete"></i></button> 
+     </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>

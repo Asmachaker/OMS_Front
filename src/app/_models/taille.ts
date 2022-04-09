@@ -4,9 +4,3 @@ export class Taille {
     name: string; 
 }
 
-export const TailleSchema = {
-    isSelected: "isSelected",
-    name: "text",
-    id:"text",
-    isEdit: "isEdit"
-  }

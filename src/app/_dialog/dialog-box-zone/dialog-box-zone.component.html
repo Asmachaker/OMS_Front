@@ -3,24 +3,36 @@
     
     </div>
     <br>
+    <mat-form-field *ngIf="(action == 'Add')">
+      <label>Nom</label>
+      <input style="width: 98px ; margin-left: 58px;"placeholder="{{action}} Name"  [(ngModel)]="local_data.name" matInput >
+      <br>
 
+      <label>Code Postal</label>
+      <select style="margin-left: 10px;" matInput  [(ngModel)]="local_data.code">
+        <option  *ngFor="let c of CodePostal" [ngValue]="c.name">{{c.name}}</option>
+      </select>
+    </mat-form-field>
     
    
     
-    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+    <mat-form-field *ngIf="action == 'Update'">
         <label>Nom</label>
         <input style="width: 98px ; margin-left: 58px;"placeholder="{{action}} Name"  [(ngModel)]="local_data.name" matInput >
         <br>
 
         <label>Code Postal</label>
-        <select style="margin-left: 10px;"  [(ngModel)]="local_data.code.name">
+        <select style="margin-left: 10px;" matInput  [(ngModel)]="local_data.code.name">
           <option  *ngFor="let c of CodePostal" [ngValue]="c.name">{{c.name}}</option>
         </select>
       </mat-form-field>
-      <ng-template #elseTemplate>
-        Sure to delete <b>{{local_data.name}}</b>?
-      </ng-template>
+
+      <mat-form-field *ngIf="action == 'Delete'">
     
+        Sure to delete <b>{{local_data.name}}</b>?
+     
+    </mat-form-field>
+
     <div mat-dialog-actions>
       <button style="margin-left: 40px" mat-button (click)="closeDialog()" >Cancel</button>
       <button mat-button (click)="doAction()" mat-flat-button color="warn">{{action}} </button>

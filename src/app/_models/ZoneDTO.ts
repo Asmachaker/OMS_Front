@@ -1,8 +1,8 @@
 export class ZoneDTO {
-   
-    id: string;
+    codePostal: string;
+    id: number;
     name: string; 
-    code: number;
+   
 }
 
 export const ZoneSchema = {

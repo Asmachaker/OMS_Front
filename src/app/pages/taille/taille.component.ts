@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Taille,TailleSchema } from '../../_models/Taille';
+import { Taille } from '../../_models/Taille';
 import {MatDialog} from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ConfirmComponent } from '../../_dialog/confirm/confirm.component';

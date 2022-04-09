@@ -105,7 +105,7 @@ export const USER_MENU: NbMenuItem[] = [
       },
       {
         title: 'Tarif',
-        link: '/pages/tarif',
+        link: '/pages/tarif/liste',
       },
 
     ]

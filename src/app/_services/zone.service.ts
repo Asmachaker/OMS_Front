@@ -40,7 +40,7 @@ export class ZoneService {
     return this.http.get<Zone>(`${apiUrl}zone/getAllZone`, httpOptions);
 }
 
-deleteZone(id:string)
+deleteZone(id:number)
 {
   return this.http.post(`${apiUrl}zone/deleteZone`,id);
 
@@ -55,8 +55,8 @@ modifyZone(zone: ZoneDTO) {
 return this.http.put(`${apiUrl}zone/ModifyZone`, zone);
 }
 
-GetZone(id: string) : Observable <Zone>  {
-return this.http.get<Zone>(`${apiUrl}zone/GetZone/`+id);
+GetZone(id: number) : Observable <Zone>  {
+return this.http.get<Zone>(`${apiUrl}zone/GetZone/${id}`);
 }
 
 

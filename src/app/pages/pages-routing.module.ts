@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlanningComponent } from './planning/planning.component';
 import { BookingComponent } from './booking/booking.component';
 import { ZoneComponent } from './zone/zone.component';
-import { TarifComponent } from './tarif/tarif.component';
+import { TarifComponent } from './tarifs/_tarif/tarif.component';
 
 import { BordereauComponent } from './bordereau/bordereau.component';
 import { FactureComponent } from './facture/facture.component';
@@ -57,9 +57,12 @@ children: [
   },
   {
     path: 'tarif',
-   component: TarifComponent
-
+    loadChildren: () => import('./tarifs/tarif.module')
+      .then(m => m.Tarif_Module),
+      
+  
   },
+
    {
     path: 'taille',
     component:TailleComponent

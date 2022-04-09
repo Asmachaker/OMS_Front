@@ -8,7 +8,7 @@ import { PlanningComponent } from './planning/planning.component';
 import { BookingComponent } from './booking/booking.component';
 import { clientsComponent } from './clients/client.component';
 import { TailleComponent } from './taille/taille.component';
-import { TarifComponent } from './tarif/tarif.component';
+import { TarifsComponent } from './tarifs/tarif.component';
 import { BordereauComponent } from './bordereau/bordereau.component';
 import { FactureComponent } from './facture/facture.component';
 import { FactureAvoirComponent } from './facture-avoir/facture-avoir.component';
@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AdminsComponent } from './admins/admin.component';
 import { ZoneComponent } from './zone/zone.component';
+
 
 
 
@@ -59,7 +60,7 @@ import { ZoneComponent } from './zone/zone.component';
     BookingComponent,
     clientsComponent,
     TailleComponent,
-    TarifComponent,
+    TarifsComponent,
     BordereauComponent,
     FactureComponent,
     FactureAvoirComponent,

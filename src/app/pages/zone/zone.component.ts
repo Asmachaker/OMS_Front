@@ -72,19 +72,21 @@ export class ZoneComponent implements OnInit {
         if(result.event == 'Add'){
           this.addRowData(result.data);
         }else if(result.event == 'Update'){
+          this.getLista();
           this.updateRowData(result.data);
         }else if(result.event == 'Delete'){
           this.deleteRowData(result.data);
         }
       });
     }
+
   zone = new Zone;
   zones = new ZoneDTO;
     addRowData(object){
       console.log(object)
       this.zones.name= toTitleCase(object.name);
-      this.zones.id=Math.random().toString(16).slice(2);
-      this.zones.code= object.code;
+      this.zones.id=randomIntFromInterval(1000,9999);
+      this.zones.codePostal= object.code;
      // console.log(this.taill)
       console.log(this.zones)
       this.zoneService.addZone(this.zones).subscribe(
@@ -101,7 +103,9 @@ export class ZoneComponent implements OnInit {
         }
       )
     
-   
+      function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
   
       function toTitleCase(str) {
         return str.replace(
@@ -118,7 +122,7 @@ export class ZoneComponent implements OnInit {
     
     updateRowData(object){ 
       this.zoneService.GetZone(object.id).subscribe(res => {
-      if (res.name == object.name ) {
+      if ((res.name == object.name ) && (res.code.name == object.code.name)) {
         this.status = "danger";
         this.toastrService.show(``, `Vous n'avez rien modifier!`, { status: this.status, destroyByClick: true, hasIcon: false, duration: 2000, position: NbGlobalPhysicalPosition.TOP_RIGHT });
       }
@@ -127,7 +131,9 @@ export class ZoneComponent implements OnInit {
        
         this.zones.name= toTitleCase(object.name);
         this.zones.id=object.id;
-        this.zones.code= object.code;
+        this.zones.codePostal= object.code.name;
+        console.log()
+        this.getLista();
   
         this.zoneService.modifyZone(this.zones).subscribe(
           (data) => {
@@ -137,7 +143,7 @@ export class ZoneComponent implements OnInit {
           },
           (error) => {
             this.status = "danger"
-            this.toastrService.show(``, `Utilisateur existe déjà!`, { status: this.status, destroyByClick: true, hasIcon: false, duration: 2000, position: NbGlobalPhysicalPosition.TOP_RIGHT });
+            this.toastrService.show(``, `Erreur de modification!`, { status: this.status, destroyByClick: true, hasIcon: false, duration: 2000, position: NbGlobalPhysicalPosition.TOP_RIGHT });
           }
         )
       }
