@@ -35,7 +35,7 @@ export const ADMIN_MENU: NbMenuItem[] = [
       },
       {
         title: 'Tarif',
-        link: '/pages/tarif',
+        link: '/pages/tarif/liste',
       },
 
     ]

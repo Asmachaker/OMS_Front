@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from "rxjs";
 import { environment } from '../../environments/environment';
 
-import { ZoneDTO } from '../_models/ZoneDTO';
+import { ZoneDTO } from '../_DTO/ZoneDTO';
 import { Zone } from '../_models/Zone';
 
 const apiUrl =environment.backendUrl;
@@ -36,8 +36,8 @@ export class ZoneService {
       'Something bad happened; please try again later.');
   };
   
-  allZones(): Observable<Zone>{
-    return this.http.get<Zone>(`${apiUrl}zone/getAllZone`, httpOptions);
+  allZones(): Observable<any>{
+    return this.http.get<any>(`${apiUrl}zone/getAllZone`, httpOptions);
 }
 
 deleteZone(id:number)

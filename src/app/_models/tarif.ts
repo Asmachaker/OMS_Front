@@ -7,5 +7,6 @@ export class Tarif {
    price: number;
    zone : Zone;
    taille: Taille;
-   shift: shift
+   shift: shift;
+   name: string;
 }

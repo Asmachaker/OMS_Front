@@ -7,7 +7,7 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NbComponentStatus, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { DialogBoxComponentZone } from '../../_dialog/dialog-box-zone/dialog-box-zone.component';
-import { ZoneDTO } from '../../_models/ZoneDTO';
+import { ZoneDTO } from '../../_DTO/ZoneDTO';
 import {  ZoneService } from '../../_services/zone.service';
 import { Zone } from '../../_models/Zone';
 import { Code } from '../../_models/Code';
@@ -159,10 +159,7 @@ export class ZoneComponent implements OnInit {
    
     }
   
-  
-  
-  
-    deleteRowData(object){
+ deleteRowData(object){
       this.zoneService.deleteZone(object.id).subscribe(
         (data) => {
           this.getLista();

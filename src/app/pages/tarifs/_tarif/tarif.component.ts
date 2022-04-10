@@ -17,8 +17,11 @@ import { DialogService } from '../../../_services/dialog.service';
   styleUrls: ['./tarif.component.scss']
 })
 export class TarifComponent implements OnInit {
-  displayedColumns: string[] = ['ID.', 'Shift', 'Zone', 'Taille','Prix','Actions'];
+  displayedColumns: string[] = ['ID.','Nom', 'Shift', 'Zone', 'Taille','Prix','Actions'];
 
+  ZoneData = [];
+  TailleData = [];
+  ShiftData = [];
   tarifData: any;
   status: NbComponentStatus ;
   search='';
@@ -57,6 +60,29 @@ edit(tarif: Tarif)
  this.router.navigateByUrl('pages/tarif/modifTarif');
  }
 
+ delete(tarif: Tarif)
+{ this.dialog
+  .confirmDialog({
+    title: 'Supprimer '+tarif.name,
+    message: 'Êtes-vous sûr?',
+    confirmCaption: 'Oui',
+    cancelCaption: 'Non',
+  }).subscribe((yes) => {
+    if (yes==true) {
+    this.tarifService.deleteTarif(tarif.id).subscribe(req => {
+      this.getLista();
+      this.status="success"
+      this.toastrService.show(``,`La Tarif est supprimé avec succés`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 10000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+    });
+      
+       }
+   else {
+    this.getLista();
+     this.toastrService.show(``,`Pas de suppression`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 3000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+    }
+  })
+  }
+ 
 
  
  

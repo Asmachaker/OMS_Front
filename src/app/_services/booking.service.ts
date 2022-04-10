@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from "rxjs";
+import { Observable,  throwError } from "rxjs";
 import { environment } from '../../environments/environment';
 
-import { Taille } from '../_models/taille';
+
 
 
 const apiUrl =environment.backendUrl;
@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class TailleService {
+export class BookingService {
   constructor(private http: HttpClient) {
   }
 
@@ -36,28 +36,7 @@ export class TailleService {
       'Something bad happened; please try again later.');
   };
   
-  alltailles(): Observable<any>{
-    return this.http.get<any>(`${apiUrl}taille/getAllTaille`, httpOptions);
+  allBookings(): Observable<any>{
+    return this.http.get<any>(`${apiUrl}booking/getAllbookings`, httpOptions);
 }
-
-deleteTaille(id:string)
-{
-  return this.http.post(`${apiUrl}taille/deleteTaille`,id.toString());
-
-}
-
-addTaille(taille: Taille) {
-
-return this.http.post(`${apiUrl}taille/addTaille`, taille);
-}
-
-modifyTaille(taille: any) {
-return this.http.put(`${apiUrl}taille/ModifyTaille`, taille);
-}
-
-GetTaille(id: string) : Observable <Taille>  {
-return this.http.get<Taille>(`${apiUrl}taille/GetTaille/`+id.toString());
-}
-
-
 }

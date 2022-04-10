@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from "rxjs";
 import { environment } from '../../environments/environment';
+import { tarifDTO } from '../_DTO/TarifDTO';
 
 import { Tarif } from '../_models/tarif';
 
@@ -45,7 +46,7 @@ addTarif(tarif: any) {
 return this.http.post(`${apiUrl}tarif/addTarif`, tarif);
 }
 
-modifyTarif(tarif: any) {
+modifyTarif(tarif: tarifDTO) {
 return this.http.put(`${apiUrl}tarif/ModifyTarif`, tarif);
 }
 
@@ -55,8 +56,12 @@ return this.http.get<Tarif>(`${apiUrl}tarif/GetTarif/${id}`);
 
 deleteTarif(id:number)
 {
-  return this.http.post(`${apiUrl}zone/deleteTarif`,id);
+  return this.http.post(`${apiUrl}tarif/deleteTarif`,id);
 
 }
+allshifts(): Observable<any>{
+  return this.http.get<any>(`${apiUrl}shift/getAllShift`, httpOptions);
+}
+
 
 }
