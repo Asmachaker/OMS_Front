@@ -13,6 +13,6 @@ export class Booking{
   date: Date;
   idBox: BigInt;
   colone: String;
-  StationName: String;
+  stationName: String;
   idStation:  BigInt;
 }

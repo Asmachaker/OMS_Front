@@ -5,11 +5,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { NbComponentStatus, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { ZoneDTO } from '../../_DTO/ZoneDTO';
+import { NbComponentStatus, NbToastrService } from '@nebular/theme';
 import {  BookingService } from '../../_services/booking.service';
-import { Zone } from '../../_models/Zone';
 import { Booking } from '../../_models/booking';
+import { DatePipe } from '@angular/common';
+import { formatDate } from '@angular/common';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -25,15 +26,14 @@ export class BookingComponent implements OnInit {
     dataSource = new MatTableDataSource();
     bookingData: any;
     status: NbComponentStatus ;
-  
+    matDate : string;
   
     @ViewChild(MatTable,{static:true}) table: MatTable<any>;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     
-    constructor(  private router: Router,public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer,private bookingService: BookingService, private toastrService: NbToastrService) {
+    constructor( private datePipe: DatePipe ,private router: Router,public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer,private bookingService: BookingService, private toastrService: NbToastrService) {
       this.bookingData = {} as Booking;
-      
   
     }
     ngOnInit() {
@@ -43,12 +43,12 @@ export class BookingComponent implements OnInit {
       this.getLista()
   }
   
-  
+
   getLista(): void {
     this.bookingService.allBookings().subscribe((response: any) => {
       this.dataSource.data = response;
-    });
-  
+    }
+    )
   } 
   
   applyFilter(filterValue: string) {
@@ -59,8 +59,7 @@ export class BookingComponent implements OnInit {
     this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
   } else {
     this._liveAnnouncer.announce('Sorting cleared');
-  }
-  
-  }
+  }}
+
   }
    

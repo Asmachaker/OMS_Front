@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable,  throwError } from "rxjs";
 import { environment } from '../../environments/environment';
+import { Booking } from '../_models/booking';
 
 
 
@@ -36,7 +37,7 @@ export class BookingService {
       'Something bad happened; please try again later.');
   };
   
-  allBookings(): Observable<any>{
-    return this.http.get<any>(`${apiUrl}booking/getAllbookings`, httpOptions);
+  allBookings(): Observable<Booking>{
+    return this.http.get<Booking>(`${apiUrl}booking/getAllbookings`, httpOptions);
 }
 }
