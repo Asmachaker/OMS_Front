@@ -9,7 +9,7 @@ import { BookingComponent } from './booking/booking.component';
 import { clientsComponent } from './clients/client.component';
 import { TailleComponent } from './taille/taille.component';
 import { TarifsComponent } from './tarifs/tarif.component';
-import { BordereauComponent } from './bordereau/bordereau.component';
+import { bordereauxComponent } from './bordereau/bordereau.component';
 import { FactureComponent } from './facture/facture.component';
 import { FactureAvoirComponent } from './facture-avoir/facture-avoir.component';
 import {MatTableModule} from '@angular/material/table';
@@ -61,13 +61,10 @@ import { ZoneComponent } from './zone/zone.component';
     clientsComponent,
     TailleComponent,
     TarifsComponent,
-    BordereauComponent,
+    bordereauxComponent,
     FactureComponent,
     FactureAvoirComponent,
     ZoneComponent
-    
-
-    
   ],
 })
 export class PagesModule {

@@ -1,0 +1,51 @@
+
+<a style="font-weight:bold ;font-size: medium ">Bordereau</a>
+<br>
+
+<br>
+
+<mat-form-field>
+  <input matInput placeholder="Rechercher"class="search" (keyup)="applyFilter($event.target.value)">
+</mat-form-field>
+
+
+
+<table mat-table matSort [dataSource]="dataSource" (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="ID." >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by Name">
+        ID.
+    </th>
+    <td mat-cell *matCellDef="let bordereauData"> {{bordereauData.id}}  </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Client">
+    <th mat-header-cell *matHeaderCellDef >
+      Client
+    </th>
+    <td mat-cell *matCellDef="let bordereauData"> {{bordereauData.client.worning}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Date">
+    <th mat-header-cell *matHeaderCellDef >
+      Date
+    </th>
+    <td mat-cell *matCellDef="let bordereauData"> {{bordereauData.date}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Details">
+    <th mat-header-cell *matHeaderCellDef> Details Bordereau </th>
+    <td mat-cell *matCellDef="let bordereauData">
+    
+     <button (click)="edit(bordereauData)"><i class="far fa-edit"></i></button> 
+     </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>

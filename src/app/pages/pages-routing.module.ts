@@ -8,7 +8,7 @@ import { BookingComponent } from './booking/booking.component';
 import { ZoneComponent } from './zone/zone.component';
 import { TarifComponent } from './tarifs/_tarif/tarif.component';
 
-import { BordereauComponent } from './bordereau/bordereau.component';
+import { BordereauComponent } from './bordereau/_bordereau/bordereau.component';
 import { FactureComponent } from './facture/facture.component';
 import { FactureAvoirComponent } from './facture-avoir/facture-avoir.component';
 import { AdminComponent } from './admins/_admin/admin.component';
@@ -70,7 +70,8 @@ children: [
   },
    {
     path: 'bordereau',
-    component:  BordereauComponent
+    loadChildren: () => import('./bordereau/bordereau.module')
+      .then(m => m.Bordereau_Module),
  
   },
   {

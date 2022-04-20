@@ -1,31 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogService } from '../../_services/dialog.service';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-bordereau',
-  templateUrl: './bordereau.component.html',
-  styleUrls: ['./bordereau.component.scss']
+  selector: 'ngx-users',
+  template:`
+
+  <router-outlet></router-outlet>
+
+  `,
 })
-export class BordereauComponent implements OnInit {
-
-  constructor(private dialog: DialogService) { }
-
-  ngOnInit(): void {
-
-  }
-
-  
-
- /*  yesNoDialog() {
-    this.dialog
-      .confirmDialog({
-        title: 'Are you sure?',
-        message: 'Are you sure you want to do this?',
-        confirmCaption: 'Yes',
-        cancelCaption: 'No',
-      })
-      .subscribe((yes) => {
-        if (yes) console.log('The user said YES');
-      });
-  } */
+export class bordereauxComponent {
+  //<ngx-gestion-user>  </ngx-gestion-user>
 }
+

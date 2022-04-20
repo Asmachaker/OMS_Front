@@ -119,7 +119,7 @@ export const USER_MENU: NbMenuItem[] = [
 
       {
         title: 'Bordereaux',
-        link: '/pages/bordereau',
+        link: '/pages/bordereau/liste',
       },
       {
         title: 'Factures',
