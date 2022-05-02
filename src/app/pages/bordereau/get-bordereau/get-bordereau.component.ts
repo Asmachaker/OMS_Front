@@ -18,7 +18,7 @@ import { BordereauService } from '../../../_services/bordereau.services';
   styleUrls: ['./get-bordereau.component.scss']
 })
 export class GetBordereauComponent implements OnInit {
-  displayedColumns: string[] = [ 'Numéro de commande','Client', 'Emplacement','Date','Nom Station','Taille','Zone','Prix','Add'];
+  displayedColumns: string[] = [ 'Numéro de commande','Nom Station','Taille','Zone','Date','Prix','Add'];
     dataSource = new MatTableDataSource();
     bordereauData: any;
     status: NbComponentStatus ;
@@ -32,17 +32,29 @@ export class GetBordereauComponent implements OnInit {
       this.bordereauData = {} as Bordereau;
   
     }
+    list: any[] = [];
     ngOnInit() {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.bordereauService.GetBordereau(parseInt(localStorage.getItem('idBordereau'))).subscribe((res:any) => 
-        this.dataSource.data = res
-       )
-      
-      
+      this.getLista();
       }
   
-
+      getLista(): void {
+    
+        this.bordereauService.GetBordereau(parseInt(localStorage.getItem('idBordereau'))).subscribe(res => {
+          for(var i = 0; i < res.booking.length; i++){
+            this.dataSource[i] = {
+              id: res.booking[i].id,
+              date: res.booking[i].date,
+              station: res.booking[i].stationName,
+              taille:  res.booking[i].tarif.taille.name,
+              zone: res.booking[i].tarif.zone.name,            
+              prix: res.booking[i].tarif.price
+             
+            }
+           }
+    
+        });   }
 
   
   applyFilter(filterValue: string) {

@@ -42,7 +42,7 @@ export class BordereauService {
 }
 
 GetBordereau(id: number) : Observable <Bordereau>  {
-  return this.http.get<Bordereau>(`${apiUrl}tarif/GetBordereau/${id}`);
+  return this.http.get<Bordereau>(`${apiUrl}bordereau/GetBordereau/${id}`);
   }
   
 }
