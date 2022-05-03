@@ -1,4 +1,4 @@
-<a style="font-weight:bold ;font-size: medium ">Details Bordereau </a>
+<a style="font-weight:bold ;font-size: medium ">Bordereau {{name}} de {{date | date:'MM/dd/yyyy'}}</a>
 <br>
 
 <br>
@@ -6,57 +6,64 @@
 <mat-form-field>
   <input matInput placeholder="Rechercher"class="search" (keyup)="applyFilter($event.target.value)">
 </mat-form-field>
+<!-- <button style=" margin-left: 600px; margin-right: 20px;height: 49px" class="btn btn-success" [disabled]="loading" nbButton status="primary">
+  Annuler la selection
+</button> -->
 
+<button (click)="genererFacture()" style=" margin-left: 800px; height: 49px" class="btn btn-success" nbButton status="primary">
+          
+          Générer facture d'avoir 
+        </button>
 
 
 
   <table mat-table [dataSource]="dataSource" (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
 
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
 
-    <ng-container *ngFor="let column of displayedColumns;let index=index"
-     [matColumnDef]="column">
-    <th mat-header-cell *matHeaderCellDef>{{column}}</th>
-    <td mat-cell *matCellDef="let element; let i = index"> 
-         {{element[index]}} 
-    </td>
-</ng-container>  
+    <!-- Id Column -->
 
-   <!--  <ng-container matColumnDef="Numéro de commande">
+
+    <!-- Name Column -->
+     <ng-container matColumnDef="Numéro de commande">
       <th mat-header-cell *matHeaderCellDef> Numéro de commande </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <td mat-cell *matCellDef="let bookingData"> {{bookingData.numCommande}} </td>
     </ng-container>
+
+
 
     <ng-container matColumnDef="Nom Station">
-      <th mat-header-cell *matHeaderCellDef> Nom Station </th>
-      <td mat-cell *matCellDef="let element"> {{element.station}} </td>
+      <th mat-header-cell *matHeaderCellDef> Emplacement </th>
+      <td mat-cell *matCellDef="let bookingData"> {{bookingData.tarif.zone.name}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let bookingData"> {{bookingData.date | date:'MM/dd/yyyy hh:MM:SS'}} </td>
+    </ng-container>
+
 
     <ng-container matColumnDef="Taille">
       <th mat-header-cell *matHeaderCellDef> Taille </th>
-      <td mat-cell *matCellDef="let element"> {{element.taille}} </td>
+      <td mat-cell *matCellDef="let bookingData"> {{bookingData.tarif.taille.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Zone">
       <th mat-header-cell *matHeaderCellDef> Zone </th>
-      <td mat-cell *matCellDef="let element"> {{element.zone}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="Date">
-      <th mat-header-cell *matHeaderCellDef> Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      <td mat-cell *matCellDef="let bookingData"> {{bookingData.tarif.zone.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Prix">
       <th mat-header-cell *matHeaderCellDef> Prix </th>
-      <td mat-cell *matCellDef="let element"> {{element.prix}} </td>
+      <td mat-cell *matCellDef="let bookingData"> {{bookingData.tarif.price}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Add">
-      <th mat-header-cell *matHeaderCellDef> Selectionneé </th>
-      <td mat-cell *matCellDef="let element"> </td>
-    </ng-container> -->
-
+      <th mat-header-cell *matHeaderCellDef> Selection </th>
+      <td mat-cell *matCellDef="let bookingData"> <input type="checkbox" (click)="onSelect(bookingData)" [(ngModel)]="bookingData.selected" [class.alertactive]="i == selectedRow"> </td>
+    </ng-container>
+ 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

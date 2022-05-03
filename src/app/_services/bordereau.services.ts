@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable,  throwError } from "rxjs";
 import { environment } from '../../environments/environment';
+import { Booking } from '../_models/booking';
 import { Bordereau } from '../_models/Bordereau';
 
 
@@ -44,5 +45,9 @@ export class BordereauService {
 GetBordereau(id: number) : Observable <Bordereau>  {
   return this.http.get<Bordereau>(`${apiUrl}bordereau/GetBordereau/${id}`);
   }
-  
+
+  GenerateFactureAvoir(array : Array<Booking>)  {
+    return this.http.post<Bordereau>(`${apiUrl}bordereau/generateFacture`,array);
+    }
+    
 }

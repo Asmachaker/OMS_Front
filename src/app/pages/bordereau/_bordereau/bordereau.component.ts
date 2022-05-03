@@ -5,6 +5,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
+import { Booking } from '../../../_models/booking';
 import { Bordereau } from '../../../_models/Bordereau';
 import { BordereauService } from '../../../_services/bordereau.services';
 
@@ -26,7 +27,7 @@ export class BordereauComponent implements OnInit {
   
 
    constructor(private _liveAnnouncer: LiveAnnouncer, private bordereauService : BordereauService,private toastrService: NbToastrService , private router:Router) {
-   this.bordereauData = {} as Bordereau;
+    this.bordereauData = {} as Bordereau;
 
  }
 

@@ -7,8 +7,12 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
+import { equal } from 'assert';
+import { SequenceEqualSubscriber } from 'rxjs/internal/operators/sequenceEqual';
+import { Booking } from '../../../_models/booking';
 import { Bordereau } from '../../../_models/Bordereau';
 import { BordereauService } from '../../../_services/bordereau.services';
+import { DialogService } from '../../../_services/dialog.service';
 
 
 
@@ -18,21 +22,27 @@ import { BordereauService } from '../../../_services/bordereau.services';
   styleUrls: ['./get-bordereau.component.scss']
 })
 export class GetBordereauComponent implements OnInit {
-  displayedColumns: string[] = [ 'Numéro de commande','Nom Station','Taille','Zone','Date','Prix','Add'];
+ displayedColumns: string[] = [ 'Numéro de commande','Nom Station','Taille','Zone','Date','Prix','Add'];
     dataSource = new MatTableDataSource();
-    bordereauData: any;
+    bookingData: any;
     status: NbComponentStatus ;
     matDate : string;
-  
+    name: string
+    date: Date
+    loading = false;
+
     @ViewChild(MatTable,{static:true}) table: MatTable<any>;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     
-    constructor( private datePipe: DatePipe ,private router: Router,public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer,private bordereauService: BordereauService, private toastrService: NbToastrService) {
-      this.bordereauData = {} as Bordereau;
+    constructor( private Dialog: DialogService,private datePipe: DatePipe ,private router: Router,private _liveAnnouncer: LiveAnnouncer,private bordereauService: BordereauService, private toastrService: NbToastrService) {
+      this.bookingData = {} as Booking;
+
   
     }
-    list: any[] = [];
+
+
+    optionsMap : Array<Booking> = []
     ngOnInit() {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -42,24 +52,68 @@ export class GetBordereauComponent implements OnInit {
       getLista(): void {
     
         this.bordereauService.GetBordereau(parseInt(localStorage.getItem('idBordereau'))).subscribe(res => {
-          for(var i = 0; i < res.booking.length; i++){
-            this.dataSource[i] = {
-              id: res.booking[i].id,
-              date: res.booking[i].date,
-              station: res.booking[i].stationName,
-              taille:  res.booking[i].tarif.taille.name,
-              zone: res.booking[i].tarif.zone.name,            
-              prix: res.booking[i].tarif.price
-             
-            }
-           }
-    
-        });   }
+      
+          this.dataSource.data=res.booking
+          this.name=res.client.worning
+          this.date=res.date
+       
 
-  
+         
+        });   }
+        
+      
+
+
+find = false;;
+        selectedBooking?: Booking;
+        onSelect(booking: Booking): void {
+
+          if( this.optionsMap.indexOf(booking) == -1  )
+             { this.optionsMap.push(booking)
+      }
+
+          else {
+            this.optionsMap.splice(this.optionsMap.indexOf(booking),1)
+          
+          }
+   }
+
+   genererFacture()
+   { console.log ("hi") 
+      this.loading= true;
+     this.Dialog
+    .confirmDialog({
+      title: 'Générer une facture d\'avoir pour '+this.name,
+      message: 'Êtes-vous sûr?',
+      confirmCaption: 'Oui',
+      cancelCaption: 'Non',
+    }).subscribe((yes) => {
+      if (yes==true) {
+      this.bordereauService.GenerateFactureAvoir(this.optionsMap).subscribe(
+        (data)=>{
+          this.status="success"
+          this.toastrService.show(``,`Facture d'avoir générer avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+          this.router.navigate(['pages/bordereau/liste']);
+       },
+        (error)=>{
+          this.status="danger"
+          this.toastrService.show(``,`'Un Erreur se produit !'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+          this.loading = false;
+        })
+         }
+     else {
+     }
+    })
+    }
+
+   
+
+      
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
   announceSortChange(sortState: Sort) {
   if (sortState.direction) {
     this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
