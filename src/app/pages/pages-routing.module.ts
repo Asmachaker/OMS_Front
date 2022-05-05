@@ -80,7 +80,7 @@ children: [
  
   },
   {
-    path: 'factureAv',
+    path: 'factureAV',
     component:  FactureAvoirComponent
  
   },

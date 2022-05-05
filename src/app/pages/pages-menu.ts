@@ -127,7 +127,7 @@ export const USER_MENU: NbMenuItem[] = [
       },
       {
         title: 'Facture d\'avoir',
-        link: '/pages/factureAV',
+        link: '/pages/factureAv',
       },
 
     ]

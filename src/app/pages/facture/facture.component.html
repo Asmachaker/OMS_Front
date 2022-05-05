@@ -1,1 +1,64 @@
-<p>facture works!</p>
+
+<a style="font-weight:bold ;font-size: medium ">Client</a>
+<br>
+
+<br>
+
+<mat-form-field>
+  <input matInput placeholder="Rechercher"class="search" (keyup)="applyFilter($event.target.value)">
+</mat-form-field>
+
+
+
+<table mat-table matSort [dataSource]="dataSource" (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="Numéro" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header sortActionDescription="Sort by Name">
+        Numéro
+    </th>
+    <td mat-cell *matCellDef="let factureData"> {{factureData.id}}  </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Client">
+    <th mat-header-cell *matHeaderCellDef >
+        Client
+    </th>
+    <td mat-cell *matCellDef="let factureData"> {{factureData.client.worning}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Date">
+    <th mat-header-cell *matHeaderCellDef >
+        Date
+    </th>
+    <td mat-cell *matCellDef="let factureData"> {{factureData.date | date:'MM/dd/yyyy'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Montant">
+    <th mat-header-cell *matHeaderCellDef >
+        Montant
+    </th>
+    <td mat-cell *matCellDef="let factureData"> {{factureData.amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Statut" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header >
+      Statut
+    </th>
+    
+    <td mat-cell *matCellDef="let factureData"><ui-switch [(ngModel)]="factureData.statut"  (click)="onChangeEvent(factureData.id)"></ui-switch> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Consulter">
+    <th mat-header-cell *matHeaderCellDef> Consulter </th>
+    <td mat-cell *matCellDef="let factureData">
+    
+     <button [routerLink]="modifClient" (click)="edit(factureData)"><i class="far fa-edit"></i></button> 
+     </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>

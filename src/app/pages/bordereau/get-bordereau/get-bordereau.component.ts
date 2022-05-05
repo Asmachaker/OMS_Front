@@ -13,6 +13,7 @@ import { Booking } from '../../../_models/booking';
 import { Bordereau } from '../../../_models/Bordereau';
 import { BordereauService } from '../../../_services/bordereau.services';
 import { DialogService } from '../../../_services/dialog.service';
+import { FactureAvoirService } from '../../../_services/factureAvoir.service';
 
 
 
@@ -29,13 +30,16 @@ export class GetBordereauComponent implements OnInit {
     matDate : string;
     name: string
     date: Date
+    id :BigInt
     loading = false;
 
     @ViewChild(MatTable,{static:true}) table: MatTable<any>;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     
-    constructor( private Dialog: DialogService,private datePipe: DatePipe ,private router: Router,private _liveAnnouncer: LiveAnnouncer,private bordereauService: BordereauService, private toastrService: NbToastrService) {
+    constructor( private Dialog: DialogService,private datePipe: DatePipe ,private router: Router, 
+      private _liveAnnouncer: LiveAnnouncer,private bordereauService: BordereauService, private toastrService: NbToastrService, 
+      private factureAvService: FactureAvoirService) {
       this.bookingData = {} as Booking;
 
   
@@ -56,6 +60,8 @@ export class GetBordereauComponent implements OnInit {
           this.dataSource.data=res.booking
           this.name=res.client.worning
           this.date=res.date
+          this.id=res.id
+          
        
 
          
@@ -63,8 +69,6 @@ export class GetBordereauComponent implements OnInit {
         
       
 
-
-find = false;;
         selectedBooking?: Booking;
         onSelect(booking: Booking): void {
 
@@ -79,7 +83,7 @@ find = false;;
    }
 
    genererFacture()
-   { console.log ("hi") 
+   { 
       this.loading= true;
      this.Dialog
     .confirmDialog({
@@ -89,8 +93,9 @@ find = false;;
       cancelCaption: 'Non',
     }).subscribe((yes) => {
       if (yes==true) {
-      this.bordereauService.GenerateFactureAvoir(this.optionsMap).subscribe(
+      this.factureAvService.GenerateFactureAvoir(this.optionsMap,this.id).subscribe(
         (data)=>{
+          console.log(data)
           this.status="success"
           this.toastrService.show(``,`Facture d'avoir générer avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
           this.router.navigate(['pages/bordereau/liste']);
