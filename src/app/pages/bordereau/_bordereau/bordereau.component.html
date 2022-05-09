@@ -39,7 +39,9 @@
   <ng-container matColumnDef="Details">
     <th mat-header-cell *matHeaderCellDef> Details Bordereau </th>
     <td mat-cell *matCellDef="let bordereauData">
-    
+      <pdf-viewer [src]="pdfSource"
+              [original-size]="false"
+  ></pdf-viewer>
      <button (click)="edit(bordereauData)"><i class="far fa-edit"></i></button> 
      </td>
   </ng-container>

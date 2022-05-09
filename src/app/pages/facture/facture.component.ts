@@ -54,6 +54,11 @@ export class FactureComponent implements OnInit {
 
  } 
 
+ edit(facture : Facture)
+ {
+window.open("assets/documents/"+facture.name+".pdf");
+
+ }
 
   onChangeEvent(id : BigInt) {
     console.log(id)

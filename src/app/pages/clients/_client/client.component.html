@@ -78,7 +78,7 @@
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let clientData">
     
-     <button [routerLink]="modifClient" (click)="edit(clientData)"><i class="far fa-edit"></i></button> 
+     <button [routerLink]="modifClient" (click)="edit(clientData)"><i class="far fa-edit"></i></button> | <button (click)="genererBordereau(clientData)"><i class="far fa-edit"></i></button> 
      </td>
   </ng-container>
 

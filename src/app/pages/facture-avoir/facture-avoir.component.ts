@@ -10,6 +10,7 @@ import { FactureAvoir } from '../../_models/FactureAvoir';
 import { FactureAvoirService } from '../../_services/factureAvoir.service';
 import { DialogService } from '../../_services/dialog.service';
 import { DatePipe } from '@angular/common';
+import { Facture } from '../../_models/Facture';
 
 
 @Component({
@@ -54,6 +55,12 @@ export class FactureAvoirComponent implements OnInit {
 
  } 
 
+ edit(facture : Facture)
+ {
+window.open("assets/documents/factureAvoir/"+facture.name+".pdf");
+console.log("assets/documents/factureAvoir/"+facture.name+".pdf")
+
+ }
 
   onChangeEvent(id : BigInt) {
     console.log(id)

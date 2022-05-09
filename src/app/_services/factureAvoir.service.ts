@@ -58,4 +58,7 @@ GetFactureAvoir(id: BigInt) : Observable <FactureAvoir>  {
       return this.http.post<any>(`${apiUrl}factureAvoir/generateFactureAvoir/`+id,array);
       }
 
+      checkFactureAvoir(id: BigInt)  {
+        return this.http.get<any>(`${apiUrl}factureAvoir/FactureAvoir/`+id);}
+
 }

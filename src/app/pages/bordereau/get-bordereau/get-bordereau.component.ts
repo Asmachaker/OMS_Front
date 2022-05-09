@@ -32,6 +32,7 @@ export class GetBordereauComponent implements OnInit {
     date: Date
     id :BigInt
     loading = false;
+    bordereau : Bordereau;
 
     @ViewChild(MatTable,{static:true}) table: MatTable<any>;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -61,6 +62,7 @@ export class GetBordereauComponent implements OnInit {
           this.name=res.client.worning
           this.date=res.date
           this.id=res.id
+          this.bordereau=res
           
        
 
@@ -93,23 +95,32 @@ export class GetBordereauComponent implements OnInit {
       cancelCaption: 'Non',
     }).subscribe((yes) => {
       if (yes==true) {
+this.factureAvService.checkFactureAvoir(this.id).subscribe(res =>{
+  console.log(res)
+  if (res.id = this.bordereau.id )
+  {this.status="danger"
+  this.toastrService.show(``,`'Il y a déja une facture d'avoir générée à partir de ce bordereau !'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+}
+else{
+
+      
       this.factureAvService.GenerateFactureAvoir(this.optionsMap,this.id).subscribe(
-        (data)=>{
-          console.log(data)
+        res=>{
+          console.log(res)
           this.status="success"
           this.toastrService.show(``,`Facture d'avoir générer avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
           this.router.navigate(['pages/bordereau/liste']);
        },
-        (error)=>{
+      /*   (error)=>{
+          console.log(error)
           this.status="danger"
           this.toastrService.show(``,`'Un Erreur se produit !'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
           this.loading = false;
-        })
-         }
-     else {
-     }
+        }) */
+)}
+    
     })
-    }
+    }})}
 
    
 

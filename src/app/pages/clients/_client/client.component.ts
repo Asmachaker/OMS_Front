@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { NbComponentStatus, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 import { Client } from '../../../_models/Client';
 import { User } from '../../../_models/User';
+import { BordereauService } from '../../../_services/bordereau.services';
 import { ClientService } from '../../../_services/client.service';
 import { DialogService } from '../../../_services/dialog.service';
 
@@ -28,7 +29,7 @@ export class ClientComponent implements OnInit {
   
 
    constructor(private _liveAnnouncer: LiveAnnouncer, private clientService : ClientService,private toastrService: NbToastrService ,
-   private dialog: DialogService, private router:Router) {
+   private dialog: DialogService, private router:Router, private bordereauService : BordereauService) {
    this.clientData = {} as Client;
 
  }
@@ -106,6 +107,31 @@ edit(client: Client)
          })
          }
    });} 
+
+  genererBordereau(client : Client)
+  {
+
+    this.dialog
+    .confirmDialog({
+      title: 'générer un bordereau pour  '+client.worning,
+      message: 'La génération de bordereau inclus la désactivation de client,Êtes-vous sûr? ',
+      confirmCaption: 'Oui',
+      cancelCaption: 'Non',
+    }).subscribe((yes) => {
+      if (yes==true) {
+      this.bordereauService.GenerateBordereau(client).subscribe(req => {
+        console.log(req)
+        this.status="success"
+        this.toastrService.show(``,`Bordereau et facture générés avec succés`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 3000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+               
+    })
+    }
+       else {
+        this.getLista();
+       }
+      })
+      }
+
  
    applyFilter(filterValue: string) {
      this.dataSource.filter = filterValue.trim().toLowerCase();

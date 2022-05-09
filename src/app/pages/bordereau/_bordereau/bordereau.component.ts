@@ -1,4 +1,5 @@
 import {LiveAnnouncer} from '@angular/cdk/a11y';
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
@@ -24,6 +25,7 @@ export class BordereauComponent implements OnInit {
   search='';
   nom: string;
   id:BigInt
+  
   
 
    constructor(private _liveAnnouncer: LiveAnnouncer, private bordereauService : BordereauService,private toastrService: NbToastrService , private router:Router) {
@@ -54,6 +56,7 @@ export class BordereauComponent implements OnInit {
 edit(bordereau: Bordereau)
 { localStorage.setItem('idBordereau', bordereau.id.toString());
  this.router.navigateByUrl('pages/bordereau/DetailsBordereau');
+ //window.open("assets/documents/Jumia_01-05-2022.pdf");
  }
 
 

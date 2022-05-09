@@ -4,6 +4,7 @@ import { Observable,  throwError } from "rxjs";
 import { environment } from '../../environments/environment';
 import { Booking } from '../_models/booking';
 import { Bordereau } from '../_models/Bordereau';
+import { Client } from '../_models/Client';
 
 
 
@@ -47,7 +48,11 @@ GetBordereau(id: number) : Observable <Bordereau>  {
   }
 
   GenerateFactureAvoir(array : Array<Booking>)  {
-    return this.http.post<Bordereau>(`${apiUrl}bordereau/generateFacture`,array);
+    return this.http.post(`${apiUrl}bordereau/generateFacture`,array);
     }
-    
+
+    GenerateBordereau(client :Client)  {
+      return this.http.post(`${apiUrl}bordereau/addbordereauClient`,client);
+      }
+  
 }
