@@ -97,30 +97,31 @@ export class GetBordereauComponent implements OnInit {
       if (yes==true) {
 this.factureAvService.checkFactureAvoir(this.id).subscribe(res =>{
   console.log(res)
-  if (res.id = this.bordereau.id )
-  {this.status="danger"
-  this.toastrService.show(``,`'Il y a déja une facture d'avoir générée à partir de ce bordereau !'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
-}
+  if (res == null )
+  {  
+    this.factureAvService.GenerateFactureAvoir(this.optionsMap,this.id).subscribe()
+        this.status="success"
+        this.toastrService.show(``,`Facture d'avoir générer avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+        this.router.navigate(['pages/bordereau/liste']);
+     }
 else{
 
-      
-      this.factureAvService.GenerateFactureAvoir(this.optionsMap,this.id).subscribe(
-        res=>{
-          console.log(res)
-          this.status="success"
-          this.toastrService.show(``,`Facture d'avoir générer avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
-          this.router.navigate(['pages/bordereau/liste']);
-       },
+this.status="danger"
+  this.toastrService.show(``,`'Il y a déja une facture d'avoir générée à partir de ce bordereau !'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+}
+    
       /*   (error)=>{
           console.log(error)
           this.status="danger"
           this.toastrService.show(``,`'Un Erreur se produit !'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
           this.loading = false;
+ 
         }) */
-)}
+      })
+}})
     
-    })
-    }})}
+ } 
+    
 
    
 

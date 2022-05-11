@@ -110,7 +110,9 @@ edit(client: Client)
 
   genererBordereau(client : Client)
   {
-
+    this.clientService.GetClient(client.id).subscribe(res=> {
+      if (res.statut==true) 
+      {
     this.dialog
     .confirmDialog({
       title: 'générer un bordereau pour  '+client.worning,
@@ -119,17 +121,18 @@ edit(client: Client)
       cancelCaption: 'Non',
     }).subscribe((yes) => {
       if (yes==true) {
-      this.bordereauService.GenerateBordereau(client).subscribe(req => {
-        console.log(req)
+      this.bordereauService.GenerateBordereau(client).subscribe()
         this.status="success"
         this.toastrService.show(``,`Bordereau et facture générés avec succés`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 3000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
-               
-    })
+       this.getLista();   
     }
-       else {
-        this.getLista();
-       }
-      })
+    }
+      )}
+    else {
+      this.status="danger"
+      this.toastrService.show(``,`Le client est désactivé`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 3000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+     
+    }})
       }
 
  

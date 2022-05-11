@@ -56,7 +56,7 @@ export class FactureComponent implements OnInit {
 
  edit(facture : Facture)
  {
-window.open("assets/documents/"+facture.name+".pdf");
+window.open("assets/documents/facture/"+facture.name+".pdf");
 
  }
 
