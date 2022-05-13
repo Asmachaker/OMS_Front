@@ -3,7 +3,7 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()"></a>
+    <a class="logo" href="assets/images/logo.png" (click)="navigateHome()">HitSolution</a>
   </div>
  <!--  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
@@ -13,7 +13,7 @@
 <div class="header-container">
   <nb-actions size="small">
 
-    <nb-action  *nbIsGranted="['view', 'user']" >
+    <nb-action (click)="onItemSelection(userMenu.title)"  *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [name]="username"></nb-user>
             

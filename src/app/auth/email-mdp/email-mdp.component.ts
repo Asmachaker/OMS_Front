@@ -43,7 +43,7 @@ export class EmailMdpComponent implements OnInit {
       }
       this.email=this.form.controls["email"].value;
       this.authService.sendEmail(this.email).subscribe((data) =>{
-       // this.router.navigateByUrl("/auth/login");
+        this.router.navigateByUrl("/auth/login");
         this.status="success"
         this.toastrService.show(``,`Email envoyer avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});       
         },(error) =>{

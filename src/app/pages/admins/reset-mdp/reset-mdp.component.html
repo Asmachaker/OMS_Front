@@ -1,0 +1,96 @@
+<div class="card">
+    <div class="card-header">
+      <h3>Mes informations</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formGroup" (ngSubmit)="reset()">
+  
+        <div class="form-group">
+            <label for="oldPassword">Ancien Mot de passe</label>
+            <input
+              type="password"
+              formControlName="oldPassword"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && fval.oldPassword.errors }"
+              placeholder="Entrer Ancien Mot de passe ici"
+            />
+            <div class="form-group" *ngIf="(fval.oldPassword.errors && submitted)">
+                <div class="text-danger">
+                  <small  *ngIf="fval.oldPassword.errors.required">Ancien mot de passe est obligatoire</small>
+                </div>
+              </div>
+            </div>
+
+        <div class="form-group">
+          <label for="password">Nouveau mot de passe</label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fval.password.errors }"
+            placeholder="Entrer Nouveau mot de passe ici"
+          />
+          <div class="form-group" *ngIf="(fval.password.errors && submitted)">
+            <div class="text-danger">
+              <small  *ngIf="fval.password.errors.required">Nouveau mot de passe est obligatoire</small>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="confirm">Confirmation du nouveau mot de passe</label>
+          <input
+            type="password"
+            formControlName="confirm"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && fval.confirm.errors }"
+            placeholder="Entrer confirmation du nouveau mot de passe ici"
+          />
+          <div class="form-group" *ngIf="(fval.confirm.errors && submitted)">
+            <div class="text-danger">
+              <small  *ngIf="fval.confirm.errors.required">Confirmation est obligatoire</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="!(password.value === confirm.value) ">
+            <div class="alert alert-warning">
+             Confirmation du mot de passe est incorrecte
+            </div>
+        </div>
+        <div class="form-group" *ngIf="confirm.errors?.required && confirm.touched">
+            <div class="alert alert-warning">
+                Confirmation du Mot de passe est obligatoire!
+            </div>
+        </div>
+        <div class="form-group" *ngIf="password.invalid &&password.errors?.required && password.touched">
+            <div class="alert alert-warning">
+                Mot de passe obligatoire!
+            </div>
+        </div>
+        <div class="form-group"  *ngIf="password.errors?.minlength">
+            <div class="alert alert-warning">
+                Mot de passe doit contenir au moins 8 caractères 
+            </div>
+        </div>
+        
+  
+        <div class="form-group">
+            <br>
+        
+          <button style="float:right" class="btn btn-success" [disabled]="loading" nbButton status="primary">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Modifier
+          </button>
+  
+        </div>
+     
+      </form>
+  
+  
+    </div>
+  </div>
+  

@@ -21,12 +21,14 @@ import { MatInputModule } from '@angular/material/input';
 import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
 import { ModifAdminComponent } from './modif-admin/modif-admin.component';
 import { AdminComponent } from './_admin/admin.component';
+import { CompteAdminComponent } from './compte-admin/compte-admin.component';
+import { ResetMdpComponent } from './reset-mdp/reset-mdp.component';
 
 
 
 
 @NgModule({
-  declarations: [AjoutAdminComponent,ModifAdminComponent,AdminComponent,routedComponents],
+  declarations: [AjoutAdminComponent,ModifAdminComponent,AdminComponent,routedComponents, CompteAdminComponent, ResetMdpComponent],
   imports: [
     
     MatSortModule,

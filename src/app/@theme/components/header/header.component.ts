@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onItemSelection( title ) {
-    if ( title === 'Log out' ) {
+    if ( title === 'Déconnexion' ) {
       this.authService.logout();
       this.router.navigate(['auth/login'])
       console.log('Log out Clicked ')
@@ -89,7 +89,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     else if ( title === 'Changer mot de passe' ) {
       this.router.navigate(['pages/admin/ChangerMdp'])
-      console.log('Profile Clicked ')
+      console.log('Mdp Clicked ')
     }
   }
   ngOnDestroy() {

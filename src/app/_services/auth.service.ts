@@ -42,7 +42,7 @@ const httpOptions = {
     }
 
     getOldPassword(id:string){
-      return this.http.get<String>(`${apiUrl}admin/GetMdp/`+id);
+      return this.http.get(`${apiUrl}admin/GetMdp/`+id, {responseType: 'text'});
    }
   
     getRole(){
