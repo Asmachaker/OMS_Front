@@ -21,12 +21,13 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatNativeDateModule} from '@angular/material/core';
 import { UiSwitchModule } from 'ngx-toggle-switch';
 
-
+import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AdminsComponent } from './admins/admin.component';
 import { ZoneComponent } from './zone/zone.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -50,7 +51,9 @@ import { ZoneComponent } from './zone/zone.component';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ChartsModule
+    
   ],
   declarations: 
    [
@@ -64,7 +67,10 @@ import { ZoneComponent } from './zone/zone.component';
     bordereauxComponent,
     FactureComponent,
     FactureAvoirComponent,
-    ZoneComponent
+    ZoneComponent,
+    DashboardComponent
+   
+    
   ],
 })
 export class PagesModule {

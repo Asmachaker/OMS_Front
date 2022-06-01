@@ -68,32 +68,29 @@ console.log("assets/documents/factureAvoir/"+facture.name+".pdf")
       if (res.statut==true) 
       {this.status="danger"
       this.getLista();
-      this.toastrService.show(``,`Cette facture d'avoir est déja payée`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 10000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+      this.toastrService.show(``,`Cette facture d'avoir est déja utilisée`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 10000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
    
        }
        if(res.statut==false)
        {this.dialog
          .confirmDialog({
-           title: 'Marquer une facture d\'avoir payée',
-           message: 'Vous voulez Marquer facture d\'avoir payée de '+res.client.worning+' à '+this.datePipe.transform(res.date,"yyyy-MM-dd")+ ' payée?',
+           title: 'Marquer une facture d\'avoir utilisée',
+           message: 'Vous voulez Marquer facture d\'avoir utilisée de '+res.client.worning+' à '+this.datePipe.transform(res.date,"yyyy-MM-dd")+ ' payée?',
            confirmCaption: 'Oui',
            cancelCaption: 'Non',
          })
          .subscribe((yes) => {
            if (yes==true) {
              this.factureAvoirService.MarquerFactureAvoir(id).subscribe(
-              (data)=>{
+              data=>{
                  this.status="success"
-                 this.toastrService.show(``,`La factureAvoir est payée`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 3000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+                 this.toastrService.show(``,`La facture Avoir est utilisée`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 3000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
                },
-               (error)=>{ this.status="danger"
-               this.toastrService.show(``,`'Erreur!'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
-              }
              );;
        }
           else {
            this.getLista();
-            this.toastrService.show(``,`Le factureAvoir est encore impayée`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 10000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+            this.toastrService.show(``,`Le factureAvoir n'est pas encore utilisée`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 10000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
            }
          })
          }

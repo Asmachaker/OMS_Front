@@ -42,16 +42,13 @@ import { ClientService } from '../../_services/client.service';
     MatDialogModule,
     ThemeModule,
     NbMenuModule,
-    DashboardModule,
     MatTableModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
-   // NbButtonModule,
     ClientRoutingModule,
     NbToastrModule,
-   // NbInputModule
     
     
     ReactiveFormsModule

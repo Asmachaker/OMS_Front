@@ -2,7 +2,11 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable,  throwError } from "rxjs";
 import { environment } from '../../environments/environment';
+import { BookingDTO } from '../_DTO/BookingDTO';
+import { BookingClientDTO } from '../_DTO/BookingClientDTO';
+import { BookingZoneDTO } from '../_DTO/BookingZoneDTO';
 import { Booking } from '../_models/booking';
+import { ReplanDTO } from '../_DTO/ReplanDTO';
 
 
 
@@ -39,5 +43,22 @@ export class BookingService {
   
   allBookings(): Observable<Booking>{
     return this.http.get<Booking>(`${apiUrl}booking/getAllbookings`, httpOptions);
+}
+
+ 
+Bookingschart(): Observable<BookingDTO>{
+  return this.http.get<BookingDTO>(`${apiUrl}booking/bookingChart`, httpOptions);
+}
+
+clientChart(): Observable<BookingClientDTO>{
+  return this.http.get<BookingClientDTO>(`${apiUrl}booking/clientChart`, httpOptions);
+}
+
+zoneChart(): Observable<BookingZoneDTO>{
+  return this.http.get<BookingZoneDTO>(`${apiUrl}booking/zoneChart`, httpOptions);
+}
+
+Replan(replan:ReplanDTO){
+  return this.http.post<any>(`${apiUrl}booking/ReplanOms`,replan);
 }
 }

@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { PlanningComponent } from './planning/planning.component';
 import { BookingComponent } from './booking/booking.component';
 import { ZoneComponent } from './zone/zone.component';
@@ -13,6 +13,7 @@ import { FactureComponent } from './facture/facture.component';
 import { FactureAvoirComponent } from './facture-avoir/facture-avoir.component';
 import { AdminComponent } from './admins/_admin/admin.component';
 import { TailleComponent } from './taille/taille.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -21,7 +22,9 @@ component: PagesComponent,
 children: [
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    loadChildren: () => import('./dashboard/dashboard.module')
+      .then(m => m.DashboardModule),
+      
   },
   {
     path: 'planning',

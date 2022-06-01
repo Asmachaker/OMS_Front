@@ -41,9 +41,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [
-    { title: 'Profile', icon: 'fa fa-user' },
-    { title: 'Changer mot de passe', icon: 'fa fa-sign-out' },
-    { title: 'Déconnexion', icon: 'fa fa-sign-out' }];
+    { title: 'Profile', icon: 'person-outline' },
+    { title: 'Changer mot de passe', icon: 'settings-2-outline' },
+    { title: 'Déconnexion', icon: 'log-out-outline' }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,

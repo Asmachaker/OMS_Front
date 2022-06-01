@@ -38,7 +38,6 @@ import { ResetMdpComponent } from './reset-mdp/reset-mdp.component';
     MatDialogModule,
     ThemeModule,
     NbMenuModule,
-    DashboardModule,
     MatTableModule,
     MatNativeDateModule,
     ReactiveFormsModule,

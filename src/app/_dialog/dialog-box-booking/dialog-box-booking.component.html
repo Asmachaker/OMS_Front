@@ -1,0 +1,27 @@
+<div class="header">
+    <h2 mat-dialog-title>Replanifier Booking n° {{local_data.id}} </h2>
+    
+    </div>
+    
+    
+    
+    <mat-form-field class="mat" *ngIf="action == 'Supprimer'">
+      <div style="margin-top: 50px; margin-bottom: 50px;" >
+      <label>Date souhaité</label>
+      <input type="date" [(ngModel)]="local_data.date" />
+   
+         <label style="margin-left: 20px" >Shift</label>
+  
+         <select style="margin-left: 10px;" matInput  [(ngModel)]="local_data.name">
+          <option  *ngFor="let c of shift" [ngValue]="c">{{c}}</option>
+        </select>
+      
+        </div>
+      </mat-form-field>
+  
+    
+    <div mat-dialog-actions>
+      <button style="margin-left: 200px" mat-button (click)="closeDialog()" >Annuler</button>
+      <button mat-button (click)="doAction()" mat-flat-button color="warn">Replanifier</button>
+      
+    </div>

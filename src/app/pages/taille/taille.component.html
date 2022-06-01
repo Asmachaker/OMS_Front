@@ -10,7 +10,7 @@
 </mat-form-field>
 
 
-<button (click)="openDialog('Add',{})" class="btn btn-success" style="float: right; width:200px"><i class="far fa-plus-square"></i>  Ajouter </button><br>
+<button (click)="openDialog('Ajouter',{})" class="btn btn-success" style="float: right; width:200px"><i class="far fa-plus-square"></i>  Ajouter </button><br>
 
 
 
@@ -27,7 +27,7 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef> Nom </th>
       <td mat-cell *matCellDef="let tailleData"> {{tailleData.name}} </td>
     </ng-container>
 
@@ -35,8 +35,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let tailleData" class="action-link"> 
-        <button (click)="openDialog('Update',tailleData)"><i class="far fa-edit"></i></button> | 
-        <button (click)="openDialog('Delete',tailleData)"><i class="far fa-delete-right"></i></button>  
+        <button (click)="openDialog('Modifier',tailleData)"><i class="far fa-edit"></i></button> | 
+        <button (click)="openDialog('Supprimer',tailleData)"><img src="assets/images/delete.JPG"></button>  
       </td>
     </ng-container>
 

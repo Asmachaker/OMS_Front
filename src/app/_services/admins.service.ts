@@ -35,12 +35,11 @@ handleError(error: HttpErrorResponse) {
     'Something bad happened; please try again later.');
 };
 
-allusers(): Observable<User>{
-           return this.http.get<User>(`${apiUrl}admin/getAllUsers`,httpOptions );
+allusers(){
+           return this.http.get<any>(`${apiUrl}admin/getAllUsers`,httpOptions );
 }
 
 adduser(user: any) {
-  this.user1 = new User();
 
   return this.http.post(`${apiUrl}admin/addAdmin`, user);
 }

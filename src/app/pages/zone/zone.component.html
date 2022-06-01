@@ -9,7 +9,7 @@
   </mat-form-field>
   
   
-  <button (click)="openDialog('Add',{})" class="btn btn-success" style="float: right; width:200px"><i class="far fa-plus-square"></i>  Ajouter </button><br>
+  <button (click)="openDialog('Ajouter',{})" class="btn btn-success" style="float: right; width:200px"><i class="far fa-plus-square"></i>  Ajouter </button><br>
   
   
   
@@ -44,8 +44,8 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let zoneData" class="action-link"> 
-          <button (click)="openDialog('Update',zoneData)"><i class="far fa-edit"></i></button> | 
-          <button (click)="openDialog('Delete',zoneData)"><i class="far fa-delete-right"></i></button>  
+          <button (click)="openDialog('Modifier',zoneData)"><i class="far fa-edit"></i></button> | 
+          <button (click)="openDialog('Supprimer',zoneData)"><img src="assets/images/delete.JPG"></button>  
         </td>
       </ng-container>
   

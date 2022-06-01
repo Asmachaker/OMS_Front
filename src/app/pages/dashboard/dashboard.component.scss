@@ -14,3 +14,27 @@
     }
   }
 }
+
+p {
+  font-family: Lato;
+}
+
+
+a{
+  margin-left: 15px;
+  margin-right: 30px;
+}
+
+a:link, a:visited {
+
+  background-color: #3BACB6;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #FF5D5D;
+}

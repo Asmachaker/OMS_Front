@@ -54,7 +54,7 @@ export class AdminComponent implements OnInit {
 
  } 
 edit(admin: User)
-{ localStorage.setItem('usernameAcc', admin.username.toString());
+{ localStorage.setItem('usernameBB', admin.username.toString());
  this.router.navigateByUrl('pages/admin/modifAdmin');
  }
 

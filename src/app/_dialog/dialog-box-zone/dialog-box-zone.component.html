@@ -3,7 +3,7 @@
     
     </div>
     <br>
-    <mat-form-field *ngIf="(action == 'Add')">
+    <mat-form-field *ngIf="(action == 'Ajouter')">
       <label>Nom</label>
       <input style="width: 98px ; margin-left: 58px;"placeholder="{{action}} Name"  [(ngModel)]="local_data.name" matInput >
       <br>
@@ -16,7 +16,7 @@
     
    
     
-    <mat-form-field *ngIf="action == 'Update'">
+    <mat-form-field *ngIf="action == 'Modifier'">
         <label>Nom</label>
         <input style="width: 98px ; margin-left: 58px;"placeholder="{{action}} Name"  [(ngModel)]="local_data.name" matInput >
         <br>
@@ -27,9 +27,9 @@
         </select>
       </mat-form-field>
 
-      <mat-form-field *ngIf="action == 'Delete'">
+      <mat-form-field *ngIf="action == 'Supprimer'">
     
-        Sure to delete <b>{{local_data.name}}</b>?
+        Vous etes sure de supprimer<b>{{local_data.name}}</b>?
      
     </mat-form-field>
 

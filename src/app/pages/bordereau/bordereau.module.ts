@@ -40,7 +40,6 @@ import { BordereauService } from "../../_services/bordereau.services"
     MatDialogModule,
     ThemeModule,
     NbMenuModule,
-    DashboardModule,
     MatTableModule,
     MatNativeDateModule,
     ReactiveFormsModule,

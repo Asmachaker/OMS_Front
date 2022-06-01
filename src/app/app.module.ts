@@ -34,6 +34,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AuthComponent } from './auth/auth.component';
 import { DialogBoxComponentTaille } from './_dialog/dialog-box-taille/dialog-box.component';
 import { DialogBoxComponentZone } from './_dialog/dialog-box-zone/dialog-box-zone.component';
+import { DialogBoxComponentBooking } from './_dialog/dialog-box-booking/dialog-box-booking.component';
 
 
 
@@ -67,7 +68,7 @@ import { DialogBoxComponentZone } from './_dialog/dialog-box-zone/dialog-box-zon
   ],
 
 
-  declarations: [AppComponent,ConfirmComponent,PagesComponent, AuthComponent, DialogBoxComponentTaille,DialogBoxComponentZone],
+  declarations: [AppComponent,ConfirmComponent,PagesComponent, AuthComponent, DialogBoxComponentTaille,DialogBoxComponentZone, DialogBoxComponentBooking],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
   NbActionsModule,
   NbButtonModule,
@@ -10,15 +10,21 @@ import {
   NbListModule,
   NbIconModule,
 } from '@nebular/theme';
-import { NgxEchartsModule } from 'ngx-echarts';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
+import { DashboardRoutingModule, routedComponents } from './dashboard-routing.module';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+
 
 @NgModule({
   imports: [
+    ChartsModule,
     FormsModule,
     ThemeModule,
     NbCardModule,
@@ -31,11 +37,12 @@ import { FormsModule } from '@angular/forms';
     NbListModule,
     NbIconModule,
     NbButtonModule,
-    NgxEchartsModule,
+    DashboardRoutingModule,
+  
   ],
-  declarations: [
-    DashboardComponent,
-
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
+  declarations: [routedComponents,LineChartComponent,PieChartComponent,BarChartComponent],
 })
 export class DashboardModule { }

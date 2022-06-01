@@ -41,7 +41,6 @@ import { TarifService } from '../../_services/tarif.service';
     MatDialogModule,
     ThemeModule,
     NbMenuModule,
-    DashboardModule,
     MatTableModule,
     MatNativeDateModule,
     ReactiveFormsModule,

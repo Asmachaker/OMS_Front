@@ -14,6 +14,7 @@ import { AdminsService } from '../../../_services/admins.service';
 export class AjoutAdminComponent implements OnInit {
 
   user= new User;
+  i: number;
 
 
   
@@ -66,53 +67,59 @@ export class AjoutAdminComponent implements OnInit {
 
 get fval() { return this.registerForm.controls; }
 
+
+
+compteur:boolean
 onFormSubmit(){
   this.submitted = true;
-
-
-  if (this.registerForm.invalid) {
-    return console.log("champs invalid");
-  }
- 
-  this.loading = true;
-  this.user.lastName =  titleCaseWord(this.registerForm.controls["Nom"].value);
-  this.user.firstName =  titleCaseWord(this.registerForm.controls["Prenom"].value);
-  this.user.email = this.registerForm.controls["Email"].value;
-  this.user.phoneNumber = this.registerForm.controls["Num_telephone"].value;
-  this.user.address = this.registerForm.controls["Adresse"].value;
+  this.compteur=false
+  this.adminService.allusers().subscribe(res=>{
+    this.i=0
+  for (let j = 0; j <res.length ; j++) {
+    if(this.registerForm.controls["Email"].value == res[j].email)
+    {this.i++}}
+  if(this.i>0)
+  { console.log(this.i)   
+    this.status="danger"
+        this.toastrService.show(``,`'Ce mail existe déja!'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+        this.loading = false;}
+        else {
+    this.loading = true;
+    this.user.lastName =  titleCaseWord(this.registerForm.controls["Nom"].value);
+    this.user.firstName =  titleCaseWord(this.registerForm.controls["Prenom"].value);
+    this.user.email = this.registerForm.controls["Email"].value;
+    this.user.phoneNumber = this.registerForm.controls["Num_telephone"].value;
+    this.user.address = this.registerForm.controls["Adresse"].value;
+    this.user.username= titleCaseWord(this.registerForm.controls["Nom"].value)+this.registerForm.controls["Prenom"].value+Math.floor(Math.random()*(999-100+1)+100)
+    console.log(this.user.username)
   
-  this.user.username=makeid();
-  
-
-  this.adminService.adduser(this.user).subscribe(
-    (data)=>{
-      this.user=<User>data;
-      this.status="success"
-      this.toastrService.show(``,`Admin ajouté avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
-      this.router.navigate(['pages/admin/liste']);
-   },
-    (error)=>{
-      this.status="danger"
-      this.toastrService.show(``,`'Erreur Ajout!'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
-      this.loading = false;
+    this.adminService.adduser(this.user).subscribe(
+      (data)=>{
+        this.user=<User>data;
+        this.status="success"
+        this.toastrService.show(``,`Admin ajouté avec succès!`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+        this.router.navigate(['pages/admin/liste']);
+     },
+      (error)=>{
+        this.status="danger"
+        this.toastrService.show(``,`'Erreur Ajout!'`,{ status: this.status, destroyByClick: true, hasIcon: false,duration: 2000,position: NbGlobalPhysicalPosition.TOP_RIGHT});
+        this.loading = false;
+      })    }
     }
-  )
-
- function makeid() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    )
+    
   
-    for (var i = 0; i < 5; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
   
-    return text;
-  }
 
-  function titleCaseWord(word: string) {
-    if (!word) return word;
-    return word[0].toUpperCase() + word.substr(1).toLowerCase();
-  }
+
+
+ function titleCaseWord(word:string) {
+  if (!word) return word;
+  return word[0].toUpperCase() + word.substr(1).toLowerCase();
+   
+ } }
+
 } 
-}
+
 
 
